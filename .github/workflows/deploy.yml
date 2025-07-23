@@ -26,8 +26,11 @@ jobs:
     - name: Build application
       run: npm run build -- --configuration production
 
+    - name: Add CNAME for custom domain
+      run: echo "jabonarte.ar" > dist/jabon-arte/CNAME
+
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4
+      uses: JamesIves/github-pages-deploy-action@v4
       with:
-        deploy_key: ${{ secrets.DEPLOY_KEY }}
-        publish_dir: ./dist
+        branch: gh-pages
+        folder: dist/jabon-arte/browser
