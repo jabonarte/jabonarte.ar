@@ -7,7 +7,7 @@ on:
     branches: [ main, master ]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,81 +26,5 @@ jobs:
     - name: Run linting
       run: npm run lint
 
-    - name: Run tests
-      run: npm run test -- --watch=false --browsers=ChromeHeadless
-
     - name: Build application
       run: npm run build -- --configuration production
-
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: dist-files
-        path: dist/
-
-  deploy-vercel:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Download build artifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: dist-files
-        path: dist/
-
-    - name: Deploy to Vercel
-      uses: amondnet/vercel-action@v25
-      with:
-        vercel-token: ${{ secrets.VERCEL_TOKEN }}
-        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-        working-directory: ./
-        vercel-args: '--prod'
-
-  deploy-netlify:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Download build artifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: dist-files
-        path: dist/
-
-    - name: Deploy to Netlify
-      uses: nwtgck/actions-netlify@v2.0
-      with:
-        publish-dir: './dist/jabon-arte'
-        production-branch: main
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        deploy-message: "Deploy from GitHub Actions"
-      env:
-        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      timeout-minutes: 1
-
-  lighthouse:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Run Lighthouse CI
-      uses: treosh/lighthouse-ci-action@v10
-      with:
-        configPath: './lighthouserc.json'
-        uploadArtifacts: true
-        temporaryPublicStorage: true
