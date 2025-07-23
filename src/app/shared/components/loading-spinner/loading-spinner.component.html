@@ -1,0 +1,11 @@
+<div class="flex items-center justify-center" [class]="sizeClass">
+  <div class="relative">
+    <div
+      class="w-8 h-8 border-4 border-[#DCC7B4] rounded-full animate-spin"
+    ></div>
+    <div
+      class="absolute top-0 left-0 w-8 h-8 border-4 border-transparent border-t-[#9CB1A3] rounded-full animate-spin"
+    ></div>
+  </div>
+  <span *ngIf="showText" class="ml-3 text-[#6B4C3B]">{{ text }}</span>
+</div>

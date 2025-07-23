@@ -1,0 +1,30 @@
+# Task ID: 31
+# Title: Develop Education Module
+# Status: pending
+# Dependencies: 27
+# Priority: medium
+# Description: Create educational content about skin types, routines, and skincare conditions
+# Details:
+1. Create EducationModule with routing configuration
+2. Implement SkinTypesComponent:
+   - Interactive cards for each skin type (dry, oily, combination, sensitive)
+   - Detailed characteristics and identification tips
+   - Visual indicators and icons
+3. Create RoutinesComponent:
+   - Tabbed interface for morning/evening routines
+   - Step-by-step routine guides
+   - Product recommendations per routine
+4. Implement ConditionsComponent:
+   - Common skin conditions (acne, aging, sensitivity)
+   - Causes and treatment approaches
+   - Ingredient recommendations
+5. Create IngredientsComponent:
+   - Natural ingredients database
+   - Benefits and usage information
+   - Skin type compatibility
+6. Add interactive tabs and accordions
+7. Implement content search functionality
+8. Create printable routine guides
+
+# Test Strategy:
+Test tab navigation functionality, verify content accessibility, check responsive design on mobile, validate search feature, test printable guides

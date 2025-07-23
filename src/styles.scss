@@ -1,0 +1,112 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+/* Import FontAwesome */
+@import "@fortawesome/fontawesome-free/css/all.css";
+
+/* Global styles to match target.js exactly */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Inter", system-ui, sans-serif;
+    background-color: #fff4ec;
+    color: #6b4c3b;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer components {
+  /* Custom button styles matching target.js */
+  .btn-primary {
+    @apply bg-jabon-primary hover:bg-jabon-primary/90 text-white rounded-full px-8 py-3 text-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105;
+  }
+
+  .btn-outline {
+    @apply border-2 border-jabon-primary text-jabon-primary hover:bg-jabon-primary/10 rounded-full px-8 py-3 text-lg font-medium transition-all duration-200;
+  }
+
+  .btn-secondary {
+    @apply bg-jabon-accent hover:bg-jabon-accent/90 text-jabon-dark rounded-full px-6 py-2 text-base font-medium transition-all duration-200;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 border border-jabon-accent/20;
+  }
+
+  .card-hover {
+    @apply hover:scale-105 hover:shadow-2xl;
+  }
+
+  /* Container styles */
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Section styles */
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  /* Gradient backgrounds */
+  .gradient-bg {
+    @apply bg-gradient-to-br from-jabon-background via-white to-jabon-accent/20;
+  }
+
+  /* Text styles */
+  .heading-primary {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-jabon-dark leading-tight;
+  }
+
+  .heading-secondary {
+    @apply text-2xl md:text-3xl font-semibold text-jabon-dark leading-tight;
+  }
+
+  .text-body {
+    @apply text-lg text-jabon-dark/80 leading-relaxed;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #fff4ec;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #dcc7b4;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #9cb1a3;
+  }
+}
+
+@layer utilities {
+  /* Custom utilities */
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(107, 76, 59, 0.1);
+  }
+
+  .backdrop-blur-custom {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}

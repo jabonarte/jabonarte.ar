@@ -1,0 +1,213 @@
+<div class="min-h-screen bg-[#FFF4EC] py-20">
+  <div class="container px-4 md:px-6">
+    <!-- Header Section -->
+    <div class="text-center space-y-4 mb-16">
+      <div
+        class="inline-flex items-center px-4 py-2 bg-[#DCC7B4] text-[#6B4C3B] rounded-full text-sm font-medium"
+      >
+        <svg
+          class="w-4 h-4 mr-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 10V3L4 14h7v7l9-11h-7z"
+          ></path>
+        </svg>
+        Test Personalizado
+      </div>
+      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl text-[#6B4C3B]">
+        Identificá tu tipo de piel
+      </h2>
+      <p class="text-xl text-[#6B4C3B]/80 max-w-[800px] mx-auto">
+        Respondé estas preguntas para descubrir tu tipo de piel y recibir
+        recomendaciones personalizadas.
+      </p>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="flex justify-center items-center py-20">
+      <div
+        class="animate-spin rounded-full h-12 w-12 border-b-2 border-[#9CB1A3]"
+      ></div>
+    </div>
+
+    <!-- Test Container -->
+    <div *ngIf="!loading" class="max-w-2xl mx-auto">
+      <div class="bg-white rounded-lg shadow-lg border-0">
+        <!-- Test Not Started -->
+        <div *ngIf="!isTestActive && !isTestCompleted" class="p-8 text-center">
+          <div
+            class="w-16 h-16 bg-[#9CB1A3]/20 rounded-full flex items-center justify-center mx-auto mb-6"
+          >
+            <svg
+              class="w-8 h-8 text-[#9CB1A3]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-[#6B4C3B] mb-4">
+            ¿Lista para descubrir tu tipo de piel?
+          </h3>
+          <p class="text-[#6B4C3B]/70 mb-8">
+            Este test te ayudará a identificar tu tipo de piel y recibir
+            recomendaciones personalizadas para tu rutina de cuidado.
+          </p>
+          <button
+            (click)="startTest()"
+            class="bg-[#9CB1A3] hover:bg-[#9CB1A3]/90 text-white rounded-full px-8 py-3 font-medium transition-colors"
+          >
+            Comenzar Test
+          </button>
+        </div>
+
+        <!-- Test Active -->
+        <div *ngIf="isTestActive" class="p-8">
+          <!-- Progress Bar -->
+          <div class="flex justify-between items-center mb-6">
+            <h3 class="text-lg font-semibold text-[#6B4C3B]">
+              Pregunta {{ currentQuestionIndex + 1 }} de {{ questions.length }}
+            </h3>
+            <div class="w-32 bg-[#DCC7B4]/30 rounded-full h-2">
+              <div
+                class="bg-[#9CB1A3] h-2 rounded-full transition-all duration-300"
+                [style.width.%]="progress"
+              ></div>
+            </div>
+          </div>
+
+          <!-- Question -->
+          <div *ngIf="currentQuestion" class="space-y-6">
+            <h4 class="text-lg text-[#6B4C3B] font-medium">
+              {{ currentQuestion.question }}
+            </h4>
+
+            <!-- Options -->
+            <div class="space-y-3">
+              <button
+                *ngFor="let option of currentQuestion.options"
+                (click)="
+                  answerQuestion({
+                    questionId: currentQuestion.id,
+                    selectedOptionId: option.id,
+                    value: option.value
+                  })
+                "
+                [class]="
+                  'w-full text-left p-4 border rounded-lg transition-colors ' +
+                  (isOptionSelected(option.id)
+                    ? 'border-[#9CB1A3] bg-[#9CB1A3]/10'
+                    : 'border-[#DCC7B4] hover:bg-[#DCC7B4]/20 hover:border-[#9CB1A3] bg-transparent')
+                "
+              >
+                <span class="font-semibold text-[#9CB1A3] mr-3"
+                  >{{ option.id }}.</span
+                >
+                <span class="text-[#6B4C3B]">{{ option.text }}</span>
+                <span
+                  *ngIf="isOptionSelected(option.id)"
+                  class="float-right text-[#9CB1A3]"
+                >
+                  ✓
+                </span>
+              </button>
+            </div>
+
+            <!-- Progress indicator -->
+            <div class="text-center pt-6">
+              <p class="text-sm text-[#6B4C3B]/70">
+                Seleccioná una opción para continuar...
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Test Results -->
+        <div *ngIf="isTestCompleted" class="p-8">
+          <div class="text-center space-y-6">
+            <div
+              class="w-16 h-16 bg-[#9CB1A3] rounded-full flex items-center justify-center mx-auto"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-[#6B4C3B]">¡Test Completado!</h3>
+            <p class="text-lg text-[#6B4C3B]">
+              Tu tipo de piel es:
+              <strong class="text-[#9CB1A3] capitalize">{{
+                result?.skinType
+              }}</strong>
+            </p>
+          </div>
+
+          <!-- Recommendations -->
+          <div *ngIf="result" class="mt-8 space-y-6">
+            <div class="bg-[#DCC7B4]/20 p-6 rounded-lg">
+              <h4 class="font-semibold text-[#6B4C3B] mb-3">
+                Recomendaciones para piel {{ result.skinType }}:
+              </h4>
+              <ul class="space-y-2 text-[#6B4C3B]/80">
+                <li
+                  *ngFor="let recommendation of result.recommendations"
+                  class="flex items-start"
+                >
+                  <span class="text-[#9CB1A3] mr-2">•</span>
+                  {{ recommendation }}
+                </li>
+              </ul>
+            </div>
+
+            <!-- Product Recommendations -->
+            <div
+              *ngIf="result.products?.length"
+              class="bg-[#DCC7B4]/20 p-6 rounded-lg"
+            >
+              <h4 class="font-semibold text-[#6B4C3B] mb-3">
+                Productos recomendados:
+              </h4>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  *ngFor="let product of result.products"
+                  class="px-3 py-1 bg-[#9CB1A3]/20 text-[#6B4C3B] rounded-full text-sm"
+                >
+                  {{ product }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Restart Button -->
+            <button
+              (click)="resetTest()"
+              class="w-full bg-[#9CB1A3] hover:bg-[#9CB1A3]/90 text-white rounded-full py-3 font-medium transition-colors"
+            >
+              Hacer test nuevamente
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

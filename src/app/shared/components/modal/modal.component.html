@@ -1,0 +1,44 @@
+<div
+  *ngIf="isOpen"
+  class="fixed inset-0 z-50 flex items-center justify-center"
+  (click)="onBackdropClick($event)"
+>
+  <!-- Backdrop -->
+  <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+  <!-- Modal -->
+  <div
+    class="relative bg-white rounded-lg shadow-xl max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto"
+    (click)="$event.stopPropagation()"
+  >
+    <!-- Header -->
+    <div
+      class="flex items-center justify-between p-6 border-b border-[#DCC7B4]/20"
+    >
+      <h3 class="text-lg font-semibold text-[#6B4C3B]">{{ title }}</h3>
+      <button
+        class="text-[#6B4C3B]/70 hover:text-[#6B4C3B] transition-colors"
+        (click)="close()"
+        aria-label="Cerrar modal"
+      >
+        <span class="text-xl">✕</span>
+      </button>
+    </div>
+
+    <!-- Content -->
+    <div class="p-6">
+      <ng-content></ng-content>
+    </div>
+
+    <!-- Footer -->
+    <div
+      *ngIf="showFooter"
+      class="flex justify-end space-x-3 p-6 border-t border-[#DCC7B4]/20"
+    >
+      <app-button variant="ghost" (onClick)="close()"> Cancelar </app-button>
+      <app-button variant="primary" (onClick)="confirm()">
+        Confirmar
+      </app-button>
+    </div>
+  </div>
+</div>

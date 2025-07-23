@@ -1,0 +1,23 @@
+# Task ID: 26
+# Title: Create Core Module and Routing System
+# Status: pending
+# Dependencies: 25
+# Priority: high
+# Description: Implement the core module with routing configuration, guards, and base layout components
+# Details:
+1. Create CoreModule with singleton services and guards
+2. Setup AppRoutingModule with lazy-loaded feature routes:
+   - '' → HomeModule
+   - 'test-piel' → SkinTestModule
+   - 'productos' → ProductsModule
+   - 'educacion' → EducationModule
+   - 'contacto' → ContactModule
+3. Implement LayoutComponent with router-outlet
+4. Create HeaderComponent with sticky navigation and smooth scroll
+5. Create FooterComponent with contact information
+6. Add route guards for navigation protection
+7. Configure scroll behavior for smooth navigation between sections
+8. Setup global error handling service
+
+# Test Strategy:
+Test routing navigation between modules, verify lazy loading works, check smooth scroll functionality, validate header sticky behavior on scroll

@@ -1,0 +1,137 @@
+<div class="bg-white rounded-lg shadow-md p-6 mb-6">
+  <div class="flex flex-col lg:flex-row gap-6">
+    <!-- Search Bar -->
+    <div class="flex-1">
+      <label for="search" class="block text-sm font-medium text-[#6B4C3B] mb-2">
+        Buscar productos
+      </label>
+      <div class="relative">
+        <input
+          id="search"
+          type="text"
+          [value]="searchTerm"
+          (input)="onSearchChange($event)"
+          placeholder="Buscar por nombre, descripción o ingredientes..."
+          class="w-full pl-10 pr-4 py-3 border border-[#DCC7B4] rounded-lg focus:ring-2 focus:ring-[#9CB1A3] focus:border-[#9CB1A3] transition-colors duration-200"
+          [disabled]="loading"
+        />
+        <div
+          class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+        >
+          <svg
+            class="h-5 w-5 text-gray-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="lg:w-64">
+      <label class="block text-sm font-medium text-[#6B4C3B] mb-2">
+        Categoría
+      </label>
+      <select
+        [value]="selectedCategory"
+        (change)="onCategoryChange($event)"
+        class="w-full px-4 py-3 border border-[#DCC7B4] rounded-lg focus:ring-2 focus:ring-[#9CB1A3] focus:border-[#9CB1A3] transition-colors duration-200"
+        [disabled]="loading"
+      >
+        <option *ngFor="let category of categories" [value]="category.name">
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Clear Filters Button -->
+    <div class="lg:w-auto flex items-end">
+      <button
+        *ngIf="hasActiveFilters()"
+        (click)="onClearFilters()"
+        class="px-4 py-3 text-sm font-medium text-[#6B4C3B] border border-[#DCC7B4] hover:bg-[#DCC7B4]/20 rounded-lg transition-colors duration-200 flex items-center gap-2"
+        [disabled]="loading"
+      >
+        <svg
+          class="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+        Limpiar filtros
+      </button>
+    </div>
+  </div>
+
+  <!-- Active Filters Display -->
+  <div
+    *ngIf="hasActiveFilters()"
+    class="mt-4 pt-4 border-t border-[#DCC7B4]/20"
+  >
+    <div class="flex flex-wrap gap-2">
+      <span
+        *ngIf="selectedCategory !== 'Todos'"
+        class="inline-flex items-center gap-1 px-3 py-1 bg-[#9CB1A3]/20 text-[#6B4C3B] text-sm rounded-full"
+      >
+        Categoría: {{ selectedCategory }}
+        <button
+          (click)="onCategoryChangeTodos()"
+          class="ml-1 hover:text-[#9CB1A3]"
+        >
+          <svg
+            class="w-3 h-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </span>
+      <span
+        *ngIf="searchTerm.trim() !== ''"
+        class="inline-flex items-center gap-1 px-3 py-1 bg-[#DCC7B4]/20 text-[#6B4C3B] text-sm rounded-full"
+      >
+        Búsqueda: "{{ searchTerm }}"
+        <button
+          (click)="onSearchChangeClear()"
+          class="ml-1 hover:text-[#9CB1A3]"
+        >
+          <svg
+            class="w-3 h-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </span>
+    </div>
+  </div>
+</div>

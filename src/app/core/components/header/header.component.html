@@ -1,0 +1,119 @@
+<header
+  class="sticky top-0 z-50 w-full border-b border-jabon-accent/20 bg-white/95 backdrop-blur-custom"
+>
+  <div class="container flex h-16 items-center justify-between">
+    <div class="flex items-center space-x-3">
+      <div
+        class="w-10 h-10 bg-jabon-accent rounded-full flex items-center justify-center shadow-md"
+      >
+        <i class="fa-solid fa-leaf text-jabon-dark text-lg"></i>
+      </div>
+      <span class="text-xl font-bold text-jabon-dark">Jabón Arte</span>
+    </div>
+
+    <nav class="hidden md:flex items-center space-x-8">
+      <a
+        href="#home"
+        class="text-sm font-medium text-jabon-dark hover:text-jabon-primary transition-colors duration-200 relative group"
+        (click)="scrollToSection('home', $event)"
+      >
+        Inicio
+        <span
+          class="absolute -bottom-1 left-0 w-0 h-0.5 bg-jabon-primary transition-all duration-200 group-hover:w-full"
+        ></span>
+      </a>
+      <a
+        href="#skin-test"
+        class="text-sm font-medium text-jabon-dark hover:text-jabon-primary transition-colors duration-200 relative group"
+        (click)="scrollToSection('skin-test', $event)"
+      >
+        Test de Piel
+        <span
+          class="absolute -bottom-1 left-0 w-0 h-0.5 bg-jabon-primary transition-all duration-200 group-hover:w-full"
+        ></span>
+      </a>
+      <a
+        href="#products"
+        class="text-sm font-medium text-jabon-dark hover:text-jabon-primary transition-colors duration-200 relative group"
+        (click)="scrollToSection('products', $event)"
+      >
+        Productos
+        <span
+          class="absolute -bottom-1 left-0 w-0 h-0.5 bg-jabon-primary transition-all duration-200 group-hover:w-full"
+        ></span>
+      </a>
+      <a
+        href="#contact"
+        class="text-sm font-medium text-jabon-dark hover:text-jabon-primary transition-colors duration-200 relative group"
+        (click)="scrollToSection('contact', $event)"
+      >
+        Contacto
+        <span
+          class="absolute -bottom-1 left-0 w-0 h-0.5 bg-jabon-primary transition-all duration-200 group-hover:w-full"
+        ></span>
+      </a>
+    </nav>
+
+    <button class="btn-primary hidden md:block">
+      <span class="mr-2">🛒</span>
+      Hacer Pedido
+    </button>
+
+    <!-- Mobile menu button -->
+    <button
+      class="md:hidden p-2 text-jabon-dark hover:text-jabon-primary transition-colors duration-200"
+      (click)="toggleMobileMenu()"
+      [attr.aria-expanded]="isMobileMenuOpen"
+      aria-label="Toggle mobile menu"
+    >
+      <span *ngIf="!isMobileMenuOpen" class="text-xl">☰</span>
+      <span *ngIf="isMobileMenuOpen" class="text-xl">✕</span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    class="md:hidden bg-white border-t border-jabon-accent/20 transition-all duration-300"
+    [class.hidden]="!isMobileMenuOpen"
+    [class.max-h-0]="!isMobileMenuOpen"
+    [class.max-h-96]="isMobileMenuOpen"
+  >
+    <nav class="flex flex-col space-y-1 p-4">
+      <a
+        href="#home"
+        class="text-sm font-medium text-jabon-dark hover:text-jabon-primary transition-colors duration-200 py-3 px-4 rounded-lg hover:bg-jabon-accent/10"
+        (click)="scrollToSection('home', $event); toggleMobileMenu()"
+      >
+        Inicio
+      </a>
+      <a
+        href="#skin-test"
+        class="text-sm font-medium text-jabon-dark hover:text-jabon-primary transition-colors duration-200 py-3 px-4 rounded-lg hover:bg-jabon-accent/10"
+        (click)="scrollToSection('skin-test', $event); toggleMobileMenu()"
+      >
+        Test de Piel
+      </a>
+      <a
+        href="#products"
+        class="text-sm font-medium text-jabon-dark hover:text-jabon-primary transition-colors duration-200 py-3 px-4 rounded-lg hover:bg-jabon-accent/10"
+        (click)="scrollToSection('products', $event); toggleMobileMenu()"
+      >
+        Productos
+      </a>
+      <a
+        href="#contact"
+        class="text-sm font-medium text-jabon-dark hover:text-jabon-primary transition-colors duration-200 py-3 px-4 rounded-lg hover:bg-jabon-accent/10"
+        (click)="scrollToSection('contact', $event); toggleMobileMenu()"
+      >
+        Contacto
+      </a>
+      <button
+        class="btn-primary mt-4 w-full"
+        (click)="scrollToSection('products', $event); toggleMobileMenu()"
+      >
+        <i class="fa-solid fa-shopping-cart mr-2"></i>
+        Hacer Pedido
+      </button>
+    </nav>
+  </div>
+</header>

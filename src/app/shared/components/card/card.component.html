@@ -1,0 +1,9 @@
+<div
+  [class]="getCardClasses()"
+  [class.cursor-pointer]="clickable"
+  (click)="onClick.emit($event)"
+>
+  <div class="p-6">
+    <ng-content></ng-content>
+  </div>
+</div>

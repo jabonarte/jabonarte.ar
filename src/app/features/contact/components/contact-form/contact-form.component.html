@@ -1,0 +1,115 @@
+<div class="bg-white rounded-lg shadow-lg border-0">
+  <div class="p-6">
+    <div class="mb-6">
+      <h3 class="text-xl font-semibold text-[#6B4C3B]">Envianos un mensaje</h3>
+      <p class="text-[#6B4C3B]/70 mt-2">
+        Completá el formulario y te responderemos a la brevedad.
+      </p>
+    </div>
+
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-[#6B4C3B]">Nombre</label>
+        <input
+          type="text"
+          formControlName="name"
+          class="w-full px-4 py-3 border border-[#DCC7B4] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#9CB1A3] focus:border-transparent transition-colors"
+          placeholder="Tu nombre completo"
+          [class.border-red-500]="
+            contactForm.get('name')?.invalid && contactForm.get('name')?.touched
+          "
+        />
+        <div
+          *ngIf="
+            contactForm.get('name')?.invalid && contactForm.get('name')?.touched
+          "
+          class="text-red-500 text-sm mt-1"
+        >
+          El nombre es requerido
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-[#6B4C3B]">Email</label>
+        <input
+          type="email"
+          formControlName="email"
+          class="w-full px-4 py-3 border border-[#DCC7B4] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#9CB1A3] focus:border-transparent transition-colors"
+          placeholder="tu@email.com"
+          [class.border-red-500]="
+            contactForm.get('email')?.invalid &&
+            contactForm.get('email')?.touched
+          "
+        />
+        <div
+          *ngIf="
+            contactForm.get('email')?.invalid &&
+            contactForm.get('email')?.touched
+          "
+          class="text-red-500 text-sm mt-1"
+        >
+          <span *ngIf="contactForm.get('email')?.errors?.['required']"
+            >El email es requerido</span
+          >
+          <span *ngIf="contactForm.get('email')?.errors?.['email']"
+            >Ingresa un email válido</span
+          >
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-[#6B4C3B]">Mensaje</label>
+        <textarea
+          rows="4"
+          formControlName="message"
+          class="w-full px-4 py-3 border border-[#DCC7B4] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#9CB1A3] focus:border-transparent transition-colors resize-none"
+          placeholder="Contanos en qué podemos ayudarte..."
+          [class.border-red-500]="
+            contactForm.get('message')?.invalid &&
+            contactForm.get('message')?.touched
+          "
+        ></textarea>
+        <div
+          *ngIf="
+            contactForm.get('message')?.invalid &&
+            contactForm.get('message')?.touched
+          "
+          class="text-red-500 text-sm mt-1"
+        >
+          <span *ngIf="contactForm.get('message')?.errors?.['required']"
+            >El mensaje es requerido</span
+          >
+          <span *ngIf="contactForm.get('message')?.errors?.['minlength']"
+            >El mensaje debe tener al menos 10 caracteres</span
+          >
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="contactForm.invalid || isSubmitting"
+        class="w-full bg-[#9CB1A3] hover:bg-[#9CB1A3]/90 disabled:bg-[#9CB1A3]/50 text-white py-3 rounded-full font-medium transition-colors disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+      >
+        <span *ngIf="!isSubmitting">Enviar mensaje</span>
+        <span *ngIf="isSubmitting">Enviando...</span>
+        <span *ngIf="!isSubmitting">📧</span>
+      </button>
+    </form>
+
+    <!-- Mensaje de éxito -->
+    <div
+      *ngIf="showSuccess"
+      class="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg"
+    >
+      ¡Mensaje enviado exitosamente! Te responderemos pronto.
+    </div>
+
+    <!-- Mensaje de error -->
+    <div
+      *ngIf="showError"
+      class="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg"
+    >
+      Hubo un error al enviar el mensaje. Por favor, intentá nuevamente.
+    </div>
+  </div>
+</div>

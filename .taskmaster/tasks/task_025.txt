@@ -1,0 +1,19 @@
+# Task ID: 25
+# Title: Setup Angular 19 Project Foundation
+# Status: pending
+# Dependencies: None
+# Priority: high
+# Description: Initialize Angular 19 project with Tailwind CSS, FontAwesome 6.x, and core configuration for the Jabón Arte migration
+# Details:
+1. Create new Angular 19 project using Angular CLI: `ng new jabon-arte --routing --style=scss --strict`
+2. Install Tailwind CSS 3.x: `npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init`
+3. Configure tailwind.config.js with custom color palette: #FFF4EC, #DCC7B4, #9CB1A3, #6B4C3B
+4. Install FontAwesome 6.x: `npm install @fortawesome/fontawesome-free @fortawesome/angular-fontawesome`
+5. Setup TypeScript 5.x configuration with strict mode
+6. Configure angular.json for build optimizations
+7. Create folder structure: core/, shared/, features/ modules
+8. Setup environment files for development and production
+9. Configure ESLint and Prettier for code quality
+
+# Test Strategy:
+Verify project builds successfully with `ng build`, check Tailwind classes work, confirm FontAwesome icons render, validate TypeScript compilation with no errors

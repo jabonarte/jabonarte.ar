@@ -1,0 +1,80 @@
+<div class="space-y-8">
+  <div class="text-center mb-12">
+    <h3 class="text-2xl font-bold text-[#6B4C3B] mb-4">Tipos de Piel</h3>
+    <p class="text-[#6B4C3B]/80 max-w-2xl mx-auto">
+      Cada tipo de piel tiene características únicas y necesidades específicas.
+      Identificá el tuyo para un cuidado personalizado.
+    </p>
+  </div>
+
+  <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <div
+      *ngFor="let skinType of filteredSkinTypes"
+      class="bg-white rounded-lg shadow-lg overflow-hidden border-0 hover:shadow-xl transition-shadow duration-300"
+    >
+      <div class="p-6">
+        <div class="flex items-center space-x-3 mb-4">
+          <div
+            class="w-12 h-12 bg-[#DCC7B4] rounded-full flex items-center justify-center"
+          >
+            <i [class]="skinType.icon + ' text-[#6B4C3B] text-xl'"></i>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold text-[#6B4C3B]">
+              {{ skinType.name }}
+            </h4>
+            <p class="text-sm text-[#6B4C3B]/70">{{ skinType.description }}</p>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <div
+            *ngFor="let characteristic of skinType.characteristics"
+            class="flex items-center space-x-2"
+          >
+            <span class="w-2 h-2 bg-[#9CB1A3] rounded-full"></span>
+            <span class="text-sm text-[#6B4C3B]">{{ characteristic }}</span>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-[#DCC7B4]/30">
+          <h5 class="font-semibold text-[#6B4C3B] mb-2">
+            Cuidado recomendado:
+          </h5>
+          <p class="text-sm text-[#6B4C3B]/80">
+            {{ skinType.care }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Información adicional -->
+  <div class="bg-[#DCC7B4]/20 rounded-lg p-8 mt-12">
+    <h4 class="text-xl font-semibold text-[#6B4C3B] mb-4 text-center">
+      ¿Cómo identificar tu tipo de piel?
+    </h4>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <h5 class="font-semibold text-[#6B4C3B] mb-2">Test simple:</h5>
+        <ol
+          class="list-decimal list-inside space-y-2 text-sm text-[#6B4C3B]/80"
+        >
+          <li>Lavá tu rostro con un limpiador suave</li>
+          <li>No apliques ningún producto</li>
+          <li>Esperá 30 minutos</li>
+          <li>Observá cómo se siente tu piel</li>
+        </ol>
+      </div>
+      <div>
+        <h5 class="font-semibold text-[#6B4C3B] mb-2">Resultados:</h5>
+        <ul class="space-y-2 text-sm text-[#6B4C3B]/80">
+          <li><strong>Tirante:</strong> Piel seca</li>
+          <li><strong>Brillante:</strong> Piel grasa</li>
+          <li><strong>Brillo solo en T:</strong> Piel mixta</li>
+          <li><strong>Cómoda:</strong> Piel normal</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

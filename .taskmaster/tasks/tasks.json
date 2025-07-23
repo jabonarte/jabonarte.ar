@@ -1,0 +1,156 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 25,
+        "title": "Setup Angular 19 Project Foundation",
+        "description": "Initialize Angular 19 project with Tailwind CSS, FontAwesome 6.x, and core configuration for the Jabón Arte migration",
+        "details": "1. Create new Angular 19 project using Angular CLI: `ng new jabon-arte --routing --style=scss --strict`\n2. Install Tailwind CSS 3.x: `npm install -D tailwindcss postcss autoprefixer && npx tailwindcss init`\n3. Configure tailwind.config.js with custom color palette: #FFF4EC, #DCC7B4, #9CB1A3, #6B4C3B\n4. Install FontAwesome 6.x: `npm install @fortawesome/fontawesome-free @fortawesome/angular-fontawesome`\n5. Setup TypeScript 5.x configuration with strict mode\n6. Configure angular.json for build optimizations\n7. Create folder structure: core/, shared/, features/ modules\n8. Setup environment files for development and production\n9. Configure ESLint and Prettier for code quality",
+        "testStrategy": "Verify project builds successfully with `ng build`, check Tailwind classes work, confirm FontAwesome icons render, validate TypeScript compilation with no errors",
+        "priority": "high",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 26,
+        "title": "Create Core Module and Routing System",
+        "description": "Implement the core module with routing configuration, guards, and base layout components",
+        "details": "1. Create CoreModule with singleton services and guards\n2. Setup AppRoutingModule with lazy-loaded feature routes:\n   - '' → HomeModule\n   - 'test-piel' → SkinTestModule\n   - 'productos' → ProductsModule\n   - 'educacion' → EducationModule\n   - 'contacto' → ContactModule\n3. Implement LayoutComponent with router-outlet\n4. Create HeaderComponent with sticky navigation and smooth scroll\n5. Create FooterComponent with contact information\n6. Add route guards for navigation protection\n7. Configure scroll behavior for smooth navigation between sections\n8. Setup global error handling service",
+        "testStrategy": "Test routing navigation between modules, verify lazy loading works, check smooth scroll functionality, validate header sticky behavior on scroll",
+        "priority": "high",
+        "dependencies": [
+          25
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 27,
+        "title": "Implement Shared Module and Common Components",
+        "description": "Create reusable components, pipes, and directives used across the application",
+        "details": "1. Create SharedModule with common components:\n   - ButtonComponent with variants (primary, secondary, outline)\n   - CardComponent for product and content display\n   - LoadingSpinnerComponent\n   - ModalComponent for overlays\n2. Implement custom pipes:\n   - SafeHtmlPipe for trusted content\n   - TruncatePipe for text limiting\n3. Create directives:\n   - LazyLoadDirective for images\n   - ClickOutsideDirective for modals\n4. Setup utility services:\n   - ThemeService for color management\n   - UtilsService for common functions\n5. Create TypeScript interfaces for data models:\n   - SkinTestQuestion, SkinTestOption\n   - Product, SkinType\n   - ContactForm interfaces",
+        "testStrategy": "Unit test all shared components, verify pipes work correctly, test directives functionality, validate TypeScript interfaces compilation",
+        "priority": "medium",
+        "dependencies": [
+          26
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 28,
+        "title": "Develop Home Module and Landing Page",
+        "description": "Create the home page with hero section, about us, and navigation to other sections",
+        "details": "1. Create HomeModule with routing configuration\n2. Implement HeroSectionComponent:\n   - Brand introduction with natural cosmetics messaging\n   - Call-to-action buttons to skin test and products\n   - Responsive background with brand imagery\n3. Create AboutSectionComponent:\n   - Company story and values\n   - Natural ingredients focus\n   - Image gallery or carousel\n4. Implement NavigationSectionComponent:\n   - Quick access cards to main features\n   - Visual icons using FontAwesome\n5. Add smooth scroll navigation between sections\n6. Implement responsive design with Tailwind breakpoints\n7. Add subtle animations and transitions\n8. Optimize images with lazy loading",
+        "testStrategy": "Test responsive design across devices, verify smooth scroll navigation, check call-to-action button functionality, validate image lazy loading performance",
+        "priority": "high",
+        "dependencies": [
+          27
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 29,
+        "title": "Build Skin Test Interactive Module",
+        "description": "Implement the core skin test functionality with questions, progress tracking, and personalized results",
+        "details": "1. Create SkinTestModule with dedicated routing\n2. Implement SkinTestService:\n   - Load 5 skin test questions with multiple choice options\n   - Calculate skin type based on answers (dry, oily, combination, sensitive)\n   - Store results in localStorage for persistence\n3. Create SkinTestComponent:\n   - Progress bar showing current question (1/5)\n   - Question display with radio button options\n   - Navigation buttons (Previous/Next)\n   - Smooth transitions between questions\n4. Implement ResultsComponent:\n   - Display calculated skin type\n   - Show personalized characteristics\n   - Recommend morning and evening routines\n   - Suggest specific ingredients\n5. Add animations for question transitions\n6. Implement restart test functionality\n7. Create shareable results feature",
+        "testStrategy": "Test all question flows, verify calculation logic accuracy, check localStorage persistence, validate responsive design, test restart functionality",
+        "priority": "high",
+        "dependencies": [
+          27
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 30,
+        "title": "Create Products Catalog Module",
+        "description": "Develop the products catalog with filtering, categorization, and detailed product information",
+        "details": "1. Create ProductsModule with routing configuration\n2. Implement ProductService:\n   - Load product data (name, price, category, description, image)\n   - Filter products by category\n   - Search functionality\n3. Create ProductCatalogComponent:\n   - Responsive grid layout using CSS Grid/Flexbox\n   - Category filter buttons (all, facial, body, hair)\n   - Search input with debounced filtering\n4. Implement ProductCardComponent:\n   - Product image with lazy loading\n   - Name, price, and category display\n   - Star rating system\n   - 'Add to Order' button linking to WhatsApp\n5. Create ProductDetailComponent:\n   - Detailed product information\n   - Ingredient list\n   - Usage instructions\n   - Related products suggestions\n6. Add loading states and error handling\n7. Implement product image optimization",
+        "testStrategy": "Test filtering functionality, verify responsive grid layout, check product card interactions, validate WhatsApp integration links, test search performance",
+        "priority": "medium",
+        "dependencies": [
+          27
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 31,
+        "title": "Develop Education Module",
+        "description": "Create educational content about skin types, routines, and skincare conditions",
+        "details": "1. Create EducationModule with routing configuration\n2. Implement SkinTypesComponent:\n   - Interactive cards for each skin type (dry, oily, combination, sensitive)\n   - Detailed characteristics and identification tips\n   - Visual indicators and icons\n3. Create RoutinesComponent:\n   - Tabbed interface for morning/evening routines\n   - Step-by-step routine guides\n   - Product recommendations per routine\n4. Implement ConditionsComponent:\n   - Common skin conditions (acne, aging, sensitivity)\n   - Causes and treatment approaches\n   - Ingredient recommendations\n5. Create IngredientsComponent:\n   - Natural ingredients database\n   - Benefits and usage information\n   - Skin type compatibility\n6. Add interactive tabs and accordions\n7. Implement content search functionality\n8. Create printable routine guides",
+        "testStrategy": "Test tab navigation functionality, verify content accessibility, check responsive design on mobile, validate search feature, test printable guides",
+        "priority": "medium",
+        "dependencies": [
+          27
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 32,
+        "title": "Implement Contact Module and Integration",
+        "description": "Create contact forms, social media integration, and location information",
+        "details": "1. Create ContactModule with routing configuration\n2. Implement ContactFormComponent:\n   - Reactive form with validation (name, email, message, phone)\n   - Form submission with loading states\n   - Success/error feedback messages\n   - Email service integration\n3. Create SocialLinksComponent:\n   - Direct WhatsApp Business API integration\n   - Instagram feed integration\n   - Social media buttons with proper tracking\n4. Implement LocationComponent:\n   - Google Maps API integration for store location\n   - Store hours and contact information\n   - Directions and accessibility info\n5. Create ContactInfoComponent:\n   - Multiple contact methods display\n   - Business hours and availability\n   - FAQ section\n6. Add form validation with custom validators\n7. Implement CAPTCHA for spam protection\n8. Create contact analytics tracking",
+        "testStrategy": "Test form validation and submission, verify WhatsApp links work correctly, check Google Maps integration, validate email service functionality, test responsive design",
+        "priority": "medium",
+        "dependencies": [
+          27
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 33,
+        "title": "Optimize Performance and Implement Lazy Loading",
+        "description": "Implement performance optimizations, lazy loading, and bundle optimization for production",
+        "details": "1. Configure lazy loading for all feature modules:\n   - Implement loadChildren for each route\n   - Add preloading strategy for critical modules\n2. Optimize images and assets:\n   - Implement WebP format with fallbacks\n   - Add responsive image loading\n   - Compress and optimize all static assets\n3. Implement OnPush change detection strategy:\n   - Update components to use OnPush\n   - Optimize component rendering cycles\n4. Add service workers for caching:\n   - Configure Angular PWA features\n   - Implement offline functionality\n5. Optimize bundle size:\n   - Tree-shake unused dependencies\n   - Split vendor and app bundles\n   - Configure webpack optimizations\n6. Implement performance monitoring:\n   - Add Core Web Vitals tracking\n   - Monitor loading times and user interactions",
+        "testStrategy": "Measure Core Web Vitals (FCP < 1.5s, LCP < 2.5s, CLS < 0.1, FID < 100ms), test lazy loading functionality, verify offline capabilities, check bundle size optimization",
+        "priority": "medium",
+        "dependencies": [
+          28,
+          29,
+          30,
+          31,
+          32
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 34,
+        "title": "Implement Accessibility and SEO Optimization",
+        "description": "Ensure WCAG 2.1 AA compliance, implement SEO best practices, and finalize production deployment",
+        "details": "1. Implement accessibility features:\n   - Add ARIA labels and roles to all interactive elements\n   - Ensure keyboard navigation support\n   - Implement focus management and skip links\n   - Add screen reader support with proper headings\n   - Verify color contrast ratios meet WCAG standards\n2. SEO optimization:\n   - Add meta tags and Open Graph data\n   - Implement structured data markup\n   - Create XML sitemap\n   - Add canonical URLs and proper redirects\n3. Final testing and validation:\n   - Cross-browser compatibility testing\n   - Mobile device testing\n   - Accessibility audit with automated tools\n   - Performance testing under load\n4. Production deployment setup:\n   - Configure CI/CD pipeline\n   - Setup environment variables\n   - Configure domain and SSL certificates\n   - Implement monitoring and error tracking\n5. Create documentation:\n   - User guide for content management\n   - Technical documentation for maintenance\n   - Deployment and troubleshooting guides",
+        "testStrategy": "Run accessibility audit tools (axe, WAVE), test with screen readers, verify keyboard navigation, check SEO scores with Lighthouse, validate cross-browser compatibility, test production deployment",
+        "priority": "medium",
+        "dependencies": [
+          33
+        ],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 35,
+        "title": "Migrate All Emojis to FontAwesome Icons Throughout Angular Application",
+        "description": "Replace all emoji usage across the Angular application with appropriate FontAwesome icons to ensure consistent visual design and better cross-platform compatibility.",
+        "details": "1. Audit existing emoji usage:\n   - Search codebase for emoji characters (🌟, 💧, 🌿, etc.)\n   - Identify emojis in templates, components, and content files\n   - Document current emoji locations and their contextual meaning\n2. Create emoji-to-FontAwesome mapping:\n   - Map skin/beauty emojis to FontAwesome equivalents (fa-leaf, fa-droplet, fa-star)\n   - Define consistent icon sizing classes (fa-sm, fa-lg, fa-2x)\n   - Create reusable icon component for common patterns\n3. Implement systematic replacement:\n   - Replace product category emojis with FontAwesome icons\n   - Update navigation and UI element emojis\n   - Convert content emojis in educational materials\n   - Update any emoji usage in form placeholders or labels\n4. Create IconComponent wrapper:\n   - Standardize icon usage with consistent sizing and styling\n   - Implement accessibility attributes (aria-label, role)\n   - Add Tailwind CSS classes for consistent spacing and colors\n5. Update styling and theming:\n   - Ensure icons match the color palette (#FFF4EC, #DCC7B4, #9CB1A3, #6B4C3B)\n   - Implement hover states and transitions\n   - Verify icons work with dark/light theme variations",
+        "testStrategy": "Perform comprehensive visual regression testing across all modules, verify no emoji characters remain in codebase using search tools, test icon accessibility with screen readers, validate consistent icon sizing and styling, check cross-browser compatibility for FontAwesome rendering, test responsive behavior of icons on mobile devices, verify icon loading performance and bundle size impact",
+        "status": "done",
+        "dependencies": [
+          25
+        ],
+        "priority": "medium",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-07-22T22:02:31.756Z",
+      "updated": "2025-07-23T03:45:05.399Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

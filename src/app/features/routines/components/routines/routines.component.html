@@ -1,0 +1,248 @@
+<!-- Rutinas de Cuidado -->
+<section class="py-20 bg-white">
+  <div class="container px-4 md:px-6">
+    <div class="text-center space-y-4 mb-16">
+      <div
+        class="w-fit mx-auto bg-[#DCC7B4] text-[#6B4C3B] px-3 py-1 rounded-full text-sm flex items-center"
+      >
+        <i class="fa-solid fa-sun mr-2"></i>
+        Rutinas Personalizadas
+      </div>
+      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl text-[#6B4C3B]">
+        Rutinas de cuidado facial
+      </h2>
+      <p class="text-xl text-[#6B4C3B]/80 max-w-[800px] mx-auto">
+        Rutinas específicas para cada tipo de piel, mañana y noche.
+      </p>
+    </div>
+
+    <div class="max-w-4xl mx-auto">
+      <!-- Tabs Navigation -->
+      <div class="grid w-full grid-cols-4 bg-[#DCC7B4]/20 rounded-lg p-1 mb-8">
+        <button
+          *ngFor="let skinType of skinTypes; let i = index"
+          (click)="setActiveTab(skinType.value)"
+          [class]="
+            activeTab === skinType.value
+              ? 'bg-[#9CB1A3] text-white'
+              : 'text-[#6B4C3B]'
+          "
+          class="py-2 px-4 rounded-md transition-colors font-medium"
+        >
+          {{ skinType.label }}
+        </button>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="mt-8">
+        <div *ngIf="activeTab === 'normal'" class="grid md:grid-cols-2 gap-8">
+          <!-- Rutina de Mañana - Normal -->
+          <div class="bg-white rounded-lg shadow-lg border-0">
+            <div class="p-6">
+              <h3
+                class="flex items-center text-xl font-semibold text-[#6B4C3B] mb-4"
+              >
+                <i class="fa-solid fa-sun mr-2"></i>
+                Rutina de Mañana
+              </h3>
+              <ol class="space-y-3 text-[#6B4C3B]/80">
+                <li
+                  *ngFor="let step of normalMorningRoutine; let i = index"
+                  class="flex items-start"
+                >
+                  <span
+                    class="bg-[#9CB1A3] text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5"
+                  >
+                    {{ i + 1 }}
+                  </span>
+                  {{ step }}
+                </li>
+              </ol>
+            </div>
+          </div>
+
+          <!-- Rutina de Noche - Normal -->
+          <div class="bg-white rounded-lg shadow-lg border-0">
+            <div class="p-6">
+              <h3
+                class="flex items-center text-xl font-semibold text-[#6B4C3B] mb-4"
+              >
+                <i class="fa-solid fa-moon mr-2"></i>
+                Rutina de Noche
+              </h3>
+              <ol class="space-y-3 text-[#6B4C3B]/80">
+                <li
+                  *ngFor="let step of normalNightRoutine; let i = index"
+                  class="flex items-start"
+                >
+                  <span
+                    class="bg-[#9CB1A3] text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5"
+                  >
+                    {{ i + 1 }}
+                  </span>
+                  {{ step }}
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="activeTab === 'seca'" class="grid md:grid-cols-2 gap-8">
+          <!-- Rutina de Mañana - Seca -->
+          <div class="bg-white rounded-lg shadow-lg border-0">
+            <div class="p-6">
+              <h3
+                class="flex items-center text-xl font-semibold text-[#6B4C3B] mb-4"
+              >
+                <i class="fa-solid fa-sun mr-2"></i>
+                Rutina de Mañana
+              </h3>
+              <ol class="space-y-3 text-[#6B4C3B]/80">
+                <li
+                  *ngFor="let step of dryMorningRoutine; let i = index"
+                  class="flex items-start"
+                >
+                  <span
+                    class="bg-[#9CB1A3] text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5"
+                  >
+                    {{ i + 1 }}
+                  </span>
+                  {{ step }}
+                </li>
+              </ol>
+            </div>
+          </div>
+
+          <!-- Rutina de Noche - Seca -->
+          <div class="bg-white rounded-lg shadow-lg border-0">
+            <div class="p-6">
+              <h3
+                class="flex items-center text-xl font-semibold text-[#6B4C3B] mb-4"
+              >
+                <i class="fa-solid fa-moon mr-2"></i>
+                Rutina de Noche
+              </h3>
+              <ol class="space-y-3 text-[#6B4C3B]/80">
+                <li
+                  *ngFor="let step of dryNightRoutine; let i = index"
+                  class="flex items-start"
+                >
+                  <span
+                    class="bg-[#9CB1A3] text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5"
+                  >
+                    {{ i + 1 }}
+                  </span>
+                  {{ step }}
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="activeTab === 'grasa'" class="grid md:grid-cols-2 gap-8">
+          <!-- Rutina de Mañana - Grasa -->
+          <div class="bg-white rounded-lg shadow-lg border-0">
+            <div class="p-6">
+              <h3
+                class="flex items-center text-xl font-semibold text-[#6B4C3B] mb-4"
+              >
+                <i class="fa-solid fa-sun mr-2"></i>
+                Rutina de Mañana
+              </h3>
+              <ol class="space-y-3 text-[#6B4C3B]/80">
+                <li
+                  *ngFor="let step of oilyMorningRoutine; let i = index"
+                  class="flex items-start"
+                >
+                  <span
+                    class="bg-[#9CB1A3] text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5"
+                  >
+                    {{ i + 1 }}
+                  </span>
+                  {{ step }}
+                </li>
+              </ol>
+            </div>
+          </div>
+
+          <!-- Rutina de Noche - Grasa -->
+          <div class="bg-white rounded-lg shadow-lg border-0">
+            <div class="p-6">
+              <h3
+                class="flex items-center text-xl font-semibold text-[#6B4C3B] mb-4"
+              >
+                <i class="fa-solid fa-moon mr-2"></i>
+                Rutina de Noche
+              </h3>
+              <ol class="space-y-3 text-[#6B4C3B]/80">
+                <li
+                  *ngFor="let step of oilyNightRoutine; let i = index"
+                  class="flex items-start"
+                >
+                  <span
+                    class="bg-[#9CB1A3] text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5"
+                  >
+                    {{ i + 1 }}
+                  </span>
+                  {{ step }}
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="activeTab === 'mixta'" class="grid md:grid-cols-2 gap-8">
+          <!-- Rutina de Mañana - Mixta -->
+          <div class="bg-white rounded-lg shadow-lg border-0">
+            <div class="p-6">
+              <h3
+                class="flex items-center text-xl font-semibold text-[#6B4C3B] mb-4"
+              >
+                <i class="fa-solid fa-sun mr-2"></i>
+                Rutina de Mañana
+              </h3>
+              <ol class="space-y-3 text-[#6B4C3B]/80">
+                <li
+                  *ngFor="let step of combinationMorningRoutine; let i = index"
+                  class="flex items-start"
+                >
+                  <span
+                    class="bg-[#9CB1A3] text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5"
+                  >
+                    {{ i + 1 }}
+                  </span>
+                  {{ step }}
+                </li>
+              </ol>
+            </div>
+          </div>
+
+          <!-- Rutina de Noche - Mixta -->
+          <div class="bg-white rounded-lg shadow-lg border-0">
+            <div class="p-6">
+              <h3
+                class="flex items-center text-xl font-semibold text-[#6B4C3B] mb-4"
+              >
+                <i class="fa-solid fa-moon mr-2"></i>
+                Rutina de Noche
+              </h3>
+              <ol class="space-y-3 text-[#6B4C3B]/80">
+                <li
+                  *ngFor="let step of combinationNightRoutine; let i = index"
+                  class="flex items-start"
+                >
+                  <span
+                    class="bg-[#9CB1A3] text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5"
+                  >
+                    {{ i + 1 }}
+                  </span>
+                  {{ step }}
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

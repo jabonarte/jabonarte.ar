@@ -1,0 +1,28 @@
+# Task ID: 27
+# Title: Implement Shared Module and Common Components
+# Status: pending
+# Dependencies: 26
+# Priority: medium
+# Description: Create reusable components, pipes, and directives used across the application
+# Details:
+1. Create SharedModule with common components:
+   - ButtonComponent with variants (primary, secondary, outline)
+   - CardComponent for product and content display
+   - LoadingSpinnerComponent
+   - ModalComponent for overlays
+2. Implement custom pipes:
+   - SafeHtmlPipe for trusted content
+   - TruncatePipe for text limiting
+3. Create directives:
+   - LazyLoadDirective for images
+   - ClickOutsideDirective for modals
+4. Setup utility services:
+   - ThemeService for color management
+   - UtilsService for common functions
+5. Create TypeScript interfaces for data models:
+   - SkinTestQuestion, SkinTestOption
+   - Product, SkinType
+   - ContactForm interfaces
+
+# Test Strategy:
+Unit test all shared components, verify pipes work correctly, test directives functionality, validate TypeScript interfaces compilation
